@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "what it means to be Human in 2026"
 date:   2026-04-25 00:47:38 -0400
 categories: jekyll update
 ---
