@@ -4,26 +4,14 @@ title:  "what it means to be Human in 2026"
 date:   2026-04-25 00:47:38 -0400
 categories: jekyll update
 ---
-You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
+being human. it's not something i've thought about often, at least not in the active sense, until only a couple of years back. i suppose, for many of us, it was the shared isolation and fear of the pandemic that was the real turning point; it signaled that collective urge to step out of our self-ascribed categories like woman or soccer fan or even American into simply human. suddenly, the only borders that remained were the prisons of our own minds. minds with the innate desire to question why and what we question, to transmute our deepest thoughts into poetry and dance, to love and to forgive, to differentiate good from evil.
 
-Jekyll requires blog post files to be named according to the following format:
+it's 2026, and i'm so grateful to roam this world with a mind that's exquisitely flawed. a mind that's sometimes too aware of its shortcomings, and in that awareness, fully human. what's disconcerting, however, is that the human mind is no longer merely an object of inspiration but a blueprint for replication. sure, the progression of machine capabilities within the last few years has been remarkable, not quite in the realm of the mind, but certainly in intelligence, in the capacity to reason. and while i see beauty in the collective consciousness that artificial intelligence encapsulates, it can never truly match, let alone surpass, the essence of human intelligence.
 
-`YEAR-MONTH-DAY-title.MARKUP`
+when i think of human intelligence i'm reminded of a beautiful, heartfelt TED talk given by the writer Elizabeth Gilbert nearly two decades ago. she speaks of the side of human intelligence that is creativity, how attributing it to the human psyche puts too much weight on the fragile beings that we are, and one way to reconcile it is by ascribing our creativity to otherworldly spirits or "daemons." not scientific, perhaps, but a compelling idea nonetheless. for if creativity is generated in an unknown, undefined realm outside ourselves, then can we truly replicate it?
 
-Where `YEAR` is a four-digit number, `MONTH` and `DAY` are both two-digit numbers, and `MARKUP` is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+occasionally, i find myself moved and dazzled by AI-generated art. but i’m also aware that it can never nourish the human mind; it has no soul behind its creative output, remaining hollow and distant in its attempt to connect. 
 
-Jekyll also offers powerful support for code snippets:
+now, to be clear, i'm not against the usage of AI as a tool. certainly, i've benefited immensely from generative AI in finding a new lens from which to understand a dense subject, culling the best resources on a topic, or even creating an optimized workflow. it’s the creative space where i find myself pausing. AI for writing stories, poetry, creating art. it's easy to put AI on a pedestal in these spaces, forgetting that our "flawed" creative outputs are superior by far. because just maybe, they come from that divine, otherworldly realm, and that certainly can’t be replicated. human creativity echoes through space and time because it has soul and experience behind it. some may argue that one day AI can also experience just as humans do. i'll wait for that day, but till then, i'll enjoy my musings on the beauty of human intelligence with all its flaws.
 
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-{% endhighlight %}
-
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
-
-[jekyll-docs]: https://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/
+thank you for reading till the end of this post, and i do hope you will stay for the journey ahead in this little corner of the internet. a corner for a hopeless romantic, trying to find the right balance between the traditional and the modern, open to new ideas and possibilities, and someone who loves humans for just existing.
