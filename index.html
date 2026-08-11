@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<title>About</title>
+<style>
+  :root{
+    --sage: #E6EBDC;
+    --sage-line: #CBD4BC;
+    --node-pink: #E896B4;
+    --node-pink-border: #B84B77;
+    --edge-rgb: 99,100,92;
+    --ink: #262B21;
+    --ink-soft: #52594A;
+    --accent: #6B5B43;
+  }
+
+  *{ box-sizing:border-box; }
+
+  html,body{
+    margin:0; padding:0;
+    background:var(--sage);
+    color:var(--ink);
+    font-family:'Lora',Georgia,serif;
+    height:100%;
+  }
+
+  .wrap{
+    display:flex;
+    min-height:100vh;
+    max-width:1200px;
+    margin:0 auto;
+    padding:56px 40px;
+    gap:64px;
+  }
+
+  /* ---------- Left: node network ---------- */
+  .left{
+    flex:1 1 46%;
+    display:flex;
+    flex-direction:column;
+    position:sticky;
+    top:56px;
+    align-self:flex-start;
+    height:calc(100vh - 112px);
+  }
+
+  .mark{
+    font-size:13px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:28px;
+  }
+
+  h1{
+    font-size:38px;
+    font-weight:500;
+    line-height:1.15;
+    margin:0 0 8px 0;
+    letter-spacing:-0.01em;
+  }
+
+  .subtitle{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:14px;
+    color:var(--ink-soft);
+    margin:0 0 36px 0;
+    max-width:34ch;
+    line-height:1.5;
+  }
+
+  canvas{
+    width:100%;
+    flex:1;
+    min-height:320px;
+    display:block;
+  }
+
+  /* ---------- Right: about me ---------- */
+  .right{
+    flex:1 1 54%;
+    padding-top:2px;
+  }
+
+  .section-label{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    border-bottom:1px solid var(--sage-line);
+    padding-bottom:14px;
+    margin-bottom:28px;
+  }
+
+  .about p{
+    font-size:18px;
+    line-height:1.75;
+    margin:0 0 22px 0;
+    max-width:56ch;
+  }
+
+  .about p:first-of-type::first-letter{
+    font-size:2.6em;
+    line-height:0.8;
+    float:left;
+    margin:6px 8px 0 0;
+    color:var(--accent);
+  }
+
+  .facts{
+    margin-top:36px;
+    padding-top:28px;
+    border-top:1px solid var(--sage-line);
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px 32px;
+  }
+
+  .fact-label{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:11px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:0 0 4px 0;
+  }
+
+  .fact-value{
+    font-size:16px;
+    margin:0;
+  }
+
+  /* ---------- Shared: linked list rows (about links + bottom notes) ---------- */
+  .links{
+    margin-top:36px;
+    padding-top:28px;
+    border-top:1px solid var(--sage-line);
+  }
+
+  .list-row{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:24px;
+    padding:22px 0;
+    border-bottom:1px solid var(--sage-line);
+    text-decoration:none;
+    color:inherit;
+  }
+
+  .list-row:hover .row-title{ color:var(--accent); }
+  .list-row:hover .arrow{ transform:translate(3px,-3px); opacity:1; }
+
+  .row-title{ transition:color .15s ease; }
+
+  .link-row{ padding:14px 0; }
+  .link-row .row-title{ font-size:17px; }
+
+  .note-main{ min-width:0; }
+  .note-title{ font-size:19px; font-weight:500; margin:0 0 6px 0; }
+
+  .note-meta{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    letter-spacing:.02em;
+  }
+
+  .note-meta .tag{
+    display:inline-block;
+    border:1px solid var(--sage-line);
+    border-radius:3px;
+    padding:1px 6px;
+    margin-right:8px;
+    font-size:11px;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+
+  .arrow{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:18px;
+    color:var(--ink-soft);
+    opacity:.5;
+    transition:transform .15s ease, opacity .15s ease;
+    flex-shrink:0;
+  }
+
+  /* ---------- Bottom: notes / blog links ---------- */
+  .notes-wrap{
+    max-width:1200px;
+    margin:0 auto;
+    padding-left:40px;
+    padding-right:40px;
+    padding-bottom:80px;
+  }
+
+  @media (max-width: 860px){
+    .wrap{ flex-direction:column; padding:32px 24px; gap:40px; }
+    .left{ position:relative; top:0; height:340px; }
+    .notes-wrap{ padding-left:24px; padding-right:24px; padding-bottom:60px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    canvas{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="left">
+    <div class="mark">About</div>
+    <h1>Hi, I'm<br>Reffat.</h1>
+    <p class="subtitle">I love data.</p>
+    <canvas id="nodes"></canvas>
+  </div>
+
+  <div class="right">
+    <div class="section-label">About</div>
+
+    <div class="about">
+      <p>Replace this with a short opening line about who you are and what you spend your time on — the kind of sentence you'd say first if someone asked in person.</p>
+      <p>Add a second paragraph here with more detail: your background, what you're currently focused on, or what draws you to the work you do. Keep it in your own voice.</p>
+    </div>
+
+    <div class="facts">
+      <div>
+        <p class="fact-label">Based in</p>
+        <p class="fact-value">NYC</p>
+      </div>
+      <div>
+        <p class="fact-label">Currently</p>
+        <p class="fact-value">Data Scientist</p>
+      </div>
+      <div>
+        <p class="fact-label">Education</p>
+        <p class="fact-value">MSE Scientific Computing, UPenn; BA, Economics, Physics, Wellesley College</p>
+      </div>
+      <div>
+        <p class="fact-label">Interests</p>
+        <p class="fact-value">Experimentation, Inference, Networks</p>
+      </div>
+    </div>
+
+    <div class="links">
+      <a class="list-row link-row" href="mailto:reffat.rjm@gmail.com">
+        <span class="row-title">Email</span>
+        <span class="arrow">&#8599;</span>
+      </a>
+      <a class="list-row link-row" href="https://github.com/rmanzur" target="_blank" rel="noopener">
+        <span class="row-title">GitHub</span>
+        <span class="arrow">&#8599;</span>
+      </a>
+      <a class="list-row link-row" href="https://linkedin.com/in/reffatmanzur" target="_blank" rel="noopener">
+        <span class="row-title">LinkedIn</span>
+        <span class="arrow">&#8599;</span>
+      </a>
+      <!-- Add more <a class="list-row link-row"> blocks here, same pattern -->
+    </div>
+  </div>
+
+</div>
+
+<div class="notes-wrap">
+  <div class="section-label">Notes &amp; writing</div>
+
+  <!-- Opens a normal page in a new tab -->
+  <a class="list-row" href="notes/example-note.html" target="_blank" rel="noopener">
+    <div class="note-main">
+      <p class="row-title note-title">what it means to be Human in 2026</p>
+      <p class="note-meta"><span class="tag">Essay</span>Aug 2026</p>
+    </div>
+    <span class="arrow">&#8599;</span>
+  </a>
+
+  <!-- Opens a PDF in a new tab -->
+  <a class="list-row" href="notes/research-summary.pdf" target="_blank" rel="noopener">
+    <div class="note-main">
+      <p class="row-title note-title">Research summary: distributed systems</p>
+      <p class="note-meta"><span class="tag">PDF</span>Jul 2026</p>
+    </div>
+    <span class="arrow">&#8599;</span>
+  </a>
+
+  <!-- Add more <a class="list-row"> blocks here, same pattern (wrap title + meta in .note-main) -->
+
+</div>
+
+<script>
+(function(){
+  const canvas = document.getElementById('nodes');
+  const ctx = canvas.getContext('2d');
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) return;
+
+  // ---- config ----
+  const NODE_COUNT = 20;
+  const NODE_RADIUS = 13;
+  const GRID_COLS = 5;
+  const GRID_ROWS = 4;
+  const GRID_MARGIN = 50;
+  const NODE_JITTER = 40;      // px of random offset from grid position
+
+  const EDGE_CONNECT_PROBABILITY = 0.3;
+  const EDGE_HOLD_MIN = 1.5;   // seconds a connection state is held, minimum
+  const EDGE_HOLD_RANGE = 6;   // + up to this many more seconds, randomly
+
+  const TIME_STEP = 0.045;
+
+  // colors read from CSS so there's a single source of truth
+  const rootStyle = getComputedStyle(document.documentElement);
+  const NODE_FILL = rootStyle.getPropertyValue('--node-pink').trim();
+  const NODE_BORDER = rootStyle.getPropertyValue('--node-pink-border').trim();
+  const EDGE_RGB = rootStyle.getPropertyValue('--edge-rgb').trim();
+
+  let width, height, dpr;
+  let nodes = [];
+  let pairs = {};
+  let t = 0;
+
+  function pairKey(i, j){
+    return i + '_' + j;
+  }
+
+  function randomHoldDuration(){
+    return t + EDGE_HOLD_MIN + Math.random() * EDGE_HOLD_RANGE;
+  }
+
+  function resize(){
+    dpr = window.devicePixelRatio || 1;
+    width = canvas.clientWidth;
+    height = canvas.clientHeight;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    layoutNodes();
+  }
+
+  // positions nodes on a grid with slight per-node jitter, so they look
+  // hand-placed rather than mechanically aligned; recomputed on resize but
+  // otherwise the nodes stay fixed in place
+  function layoutNodes(){
+    const cellW = (width - GRID_MARGIN * 2) / GRID_COLS;
+    const cellH = (height - GRID_MARGIN * 2) / GRID_ROWS;
+
+    nodes.forEach((node, i) => {
+      const col = i % GRID_COLS;
+      const row = Math.floor(i / GRID_COLS);
+      node.x = GRID_MARGIN + cellW * col + cellW * 0.5 + node.jitterX;
+      node.y = GRID_MARGIN + cellH * row + cellH * 0.5 + node.jitterY;
+    });
+  }
+
+  function initNodes(){
+    nodes = Array.from({ length: NODE_COUNT }, () => ({
+      x: 0,
+      y: 0,
+      jitterX: (Math.random() - 0.5) * NODE_JITTER,
+      jitterY: (Math.random() - 0.5) * NODE_JITTER
+    }));
+    layoutNodes();
+    initPairs();
+  }
+
+  // each pair of nodes randomly connects/disconnects, holding its current
+  // state for a random duration rather than following a smooth periodic loop
+  function initPairs(){
+    pairs = {};
+    for (let i = 0; i < nodes.length; i++){
+      for (let j = i + 1; j < nodes.length; j++){
+        pairs[pairKey(i, j)] = {
+          connected: Math.random() < EDGE_CONNECT_PROBABILITY,
+          nextChange: randomHoldDuration()
+        };
+      }
+    }
+  }
+
+  // draws an edge as a few overlapping, varied-width strokes so it reads as
+  // painted rather than a single crisp vector line
+  function drawPaintedEdge(ax, ay, bx, by, seed){
+    const strokeCount = 3;
+    ctx.lineCap = 'round';
+
+    for (let s = 0; s < strokeCount; s++){
+      const wobbleSeed = seed + s * 17;
+      const midX = (ax + bx) / 2 + Math.sin(t * 0.18 + wobbleSeed) * 5 + (s - 1) * 3;
+      const midY = (ay + by) / 2 + Math.cos(t * 0.18 + wobbleSeed) * 5 + (s - 1) * 3;
+      const isMainStroke = s === 1;
+
+      ctx.beginPath();
+      ctx.moveTo(ax, ay);
+      ctx.quadraticCurveTo(midX, midY, bx, by);
+      ctx.lineWidth = isMainStroke ? 2.8 : 1.8;
+      ctx.strokeStyle = `rgba(${EDGE_RGB},${isMainStroke ? 0.32 : 0.14})`;
+      ctx.stroke();
+    }
+  }
+
+  function drawEdges(){
+    for (let i = 0; i < nodes.length; i++){
+      for (let j = i + 1; j < nodes.length; j++){
+        const pair = pairs[pairKey(i, j)];
+
+        if (t > pair.nextChange){
+          pair.connected = Math.random() < EDGE_CONNECT_PROBABILITY;
+          pair.nextChange = randomHoldDuration();
+        }
+
+        if (!pair.connected) continue;
+
+        const a = nodes[i], b = nodes[j];
+        drawPaintedEdge(a.x, a.y, b.x, b.y, i * 7 + j * 13);
+      }
+    }
+  }
+
+  function drawNodes(){
+    for (const n of nodes){
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, NODE_RADIUS, 0, Math.PI * 2);
+      ctx.fillStyle = NODE_FILL;
+      ctx.fill();
+      ctx.lineWidth = 2.4;
+      ctx.strokeStyle = NODE_BORDER;
+      ctx.stroke();
+    }
+  }
+
+  function step(){
+    t += TIME_STEP;
+    ctx.clearRect(0, 0, width, height);
+    drawEdges();
+    drawNodes();
+    requestAnimationFrame(step);
+  }
+
+  window.addEventListener('resize', resize);
+
+  resize();
+  initNodes();
+  requestAnimationFrame(step);
+})();
+</script>
+
+</body>
+</html>
